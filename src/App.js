@@ -5,10 +5,12 @@ import './App.css';
 
 import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/Shop';
+import Header from './components/header/Header';
 
 function App() {
   return (
     <div>
+      <Header/>
       {/* Switch gives us more control by ensuring only one component is rendered for a given two similar path */}
       <Switch>
         <Route exact path='/' component={HomePage} />
