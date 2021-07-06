@@ -3,3 +3,8 @@ It remembers state of current User
 It remembers last user signed in even if we close tab or refresh pg
 As long as our application component is mounted on our job the connection to firebase is open
 SO firebase sends message ecerytime user State changes , we dont have to fetch everytime
+
+NoSQL is fancy way of saying that our DB consists of 
+one gigantic JSON object.
+UUID represents the dynamically generated I.D. string that Google made for us when we authenticated this
+user using googleSignIn
