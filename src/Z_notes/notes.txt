@@ -1,0 +1,5 @@
+FIREBASE PROVIDES: User authenticated session persistance
+It remembers state of current User
+It remembers last user signed in even if we close tab or refresh pg
+As long as our application component is mounted on our job the connection to firebase is open
+SO firebase sends message ecerytime user State changes , we dont have to fetch everytime
