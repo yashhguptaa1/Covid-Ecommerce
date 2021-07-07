@@ -6,8 +6,10 @@ import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/Shop';
 import Header from './components/header/Header';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/SignInSignUpPage';
-
 import { auth,createUserProfileDocument } from './firebase/firebase.utils';
+
+import { connect } from 'react-redux';
+import { setCurrentUser } from './redux/user/user.actions';
 
 class App extends Component {
 
@@ -18,14 +20,6 @@ class App extends Component {
       currentUser: null
     }
   }
-
-  // componentDidMount(){
-  //   auth.onAuthStateChanged(user=>{
-  //     this.setState({currentUser:user});
-  //     console.log(user);
-  //   })
-  // }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
