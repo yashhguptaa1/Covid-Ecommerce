@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import './App.css';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/Shop';
 import Header from './components/header/Header';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/SignInSignUpPage';
 import { auth,createUserProfileDocument } from './firebase/firebase.utils';
-
-import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
+
+import './App.css';
 
 class App extends Component {
 
@@ -50,19 +50,35 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
-          <Route path='/signin' component={SignInAndSignUpPage} />
+          <Route
+            exact
+            path='/signin'
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to='/' />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
         </Switch>
       </div>
     );
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+});
+
 //Mapping prop setCurrUser to dispatch function setCurrentUser we get from user.actions.js
 const mapDispatchToProps = dispatch => ({
   setCurrUser: user => dispatch(setCurrentUser(user))
 });
 
+
+//will help in accessing this.props
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);
