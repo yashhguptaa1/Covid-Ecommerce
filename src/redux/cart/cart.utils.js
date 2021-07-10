@@ -13,3 +13,8 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   
     return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
   };
+
+//Although this file was commited before
+//This file helps in implementing counter for each item 
+//if adding same item twice
+//the counter will become 2
