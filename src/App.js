@@ -17,21 +17,21 @@ class App extends Component {
 
   componentDidMount() {
 
-    const{setCurrentUser} =this.props;
+    const{setCurrUser} =this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          setCurrentUser({
+          setCurrUser({
             id: snapShot.id,
             ...snapShot.data()
           });
         });
       }
 
-      setCurrentUser(userAuth);
+      setCurrUser(userAuth);
     });
     
   }
@@ -57,8 +57,9 @@ class App extends Component {
   }
 }
 
+//Mapping prop setCurrUser to dispatch function setCurrentUser we get from user.actions.js
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrUser: user => dispatch(setCurrentUser(user))
 });
 
 export default connect(
