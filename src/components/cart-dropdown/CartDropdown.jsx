@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {selectCartItems} from '../../redux/cart/cart.selectors'
 import CartItem from '../cart-item/CartItem';
 import CustomButton from '../custom-button/CustomButton';
 
@@ -23,8 +24,8 @@ const CartDropdown = ({ cartItems }) => (
 // this means all cartReducer will be denoted by cart
 
 //in cart.reducer.js we have cartItems[] in initial state
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-  cartItems
+const mapStateToProps =state=> ({
+  cartItems: selectCartItems(state)
 });
 
 export default connect(mapStateToProps)(CartDropdown);
