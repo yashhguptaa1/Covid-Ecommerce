@@ -8,3 +8,16 @@ NoSQL is fancy way of saying that our DB consists of
 one gigantic JSON object.
 UUID represents the dynamically generated I.D. string that Google made for us when we authenticated this
 user using googleSignIn
+
+Currently the problem we face is that as soon as we refresh our application
+Our reducer gets reset completely , as our application is reinstantiating, app is in brand new state
+the only reason the user is being set is because our users auth status is not stored by our app
+its being handled by firebase auth
+Firebase auth gives us session persistance, its aware until when the user signs out.
+We dont have any storage to persist cart items
+Reducer state is large JSON objects
+Redux-persist library allows to access session storage or local storage on frontend side 
+
+Session persistance means as long as our tab is open, even if we refresh the page we
+still have access to what we have stored in session storage
+local storage will persist until we clear it out ,meaning if we close our window

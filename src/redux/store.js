@@ -1,16 +1,14 @@
 import { createStore, applyMiddleware } from 'redux';
+import {persistStore} from 'redux-persist';
 import logger from 'redux-logger';
 
 import rootReducer from './root-reducer';
 
 const middlewares = [logger];
 
-const store = createStore(rootReducer, applyMiddleware(...middlewares));
+export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
-export default store;
+// we will use this persisted version of our store in index.js
+export const persistor = persistStore(store);
 
-/*
-Add Middleware to our store so that whenever actions get fired or dispatched , we can catch them
-and then display them , It lies between actions-firing and root-reducer
-middleware is array in redux
-*/
+export default { store, persistStore };
