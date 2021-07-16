@@ -8,7 +8,8 @@ import storage from 'redux-persist/lib/storage';
 
 import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
-import directoryReducer from './directory/directory.reducer'
+import directoryReducer from './directory/directory.reducer';
+import shopReducer from './shop/shop.reducer'
 
 //json object
 //config for redux-persist to use
@@ -22,7 +23,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
-  directory : directoryReducer
+  directory : directoryReducer,
+  shop: shopReducer
 });
 
 //modified route reducer ,with persistance capabilities
