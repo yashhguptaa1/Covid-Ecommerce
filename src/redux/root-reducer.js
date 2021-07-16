@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import { persistReducer } from 'redux-persist';
 
 //what we will get here is the actual local storage object on our window browser
