@@ -17,3 +17,7 @@ export const selectCollection = collectionUrlParam =>
     [selectCollections],
     collections => collections[collectionUrlParam]
   );
+
+  //in shop.data.js
+  //we store data in form of object instead of array
+  //in this object ,the keys correspond to item names such as hats,jackets
