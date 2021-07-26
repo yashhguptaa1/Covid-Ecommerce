@@ -11,4 +11,4 @@ export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 // we will use this persisted version of our store in index.js
 export const persistor = persistStore(store);
 
-export default { store, persistStore };
+//export default { store, persistStore };
