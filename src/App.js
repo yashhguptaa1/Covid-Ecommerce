@@ -22,6 +22,8 @@ class App extends Component {
 
     const{setCurrUser} =this.props;
 
+    // userAuth is current user state on firebase project
+    //onAuthStateChanged is open messaging system/open subscription b/w firebase and our application
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -39,7 +41,7 @@ class App extends Component {
     
   }
 
-
+//closing the open subscription
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }

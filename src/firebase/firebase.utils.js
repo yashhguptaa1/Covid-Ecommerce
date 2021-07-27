@@ -16,15 +16,17 @@ firebase.initializeApp(config);
 
 
 //Get user UUID and store user in firebase DB only when user is signed In
-
+//we get userAuth object from auth lib of firebase when usser signs in
 export const createUserProfileDocument = async (userAuth, additionalData) => {
+
+  //we want to store data only if user exists
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
 
   const snapShot = await userRef.get();
 
-//Create a new user using data from our user auth object
+//Create a new user using data from our userAuth object
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -50,6 +52,8 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
+//What this means is that we want to always trigger the Google pop up whenever we use this Google auth
+//provider for authentication and signin and I'll show you what I mean when we use it.
 provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 

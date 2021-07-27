@@ -1,0 +1,11 @@
+So when a user logs in using whatever service we use, whether it's Google sigin or email and password,
+we want to store that on the App.js State so that we can pass it into components that need it because we
+want to access our current user object throughout our application.
+  
+So normally how we fetch data before is we inside of our .
+Method component did mount.
+We're used to firing a fetch api to the back end to fetch data, but this is only a one off thing.
+Once the code calls fetch, it won't come back again until a component did Mount Life-cycle method gets
+called again.
+But we don't want to remount our app.
+We just want to always know when Firebase has realized that the authentication state has changed.

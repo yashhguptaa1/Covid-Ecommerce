@@ -1,0 +1,15 @@
+So when we actually sign in with our Google sign in.
+What we get back is this user authentication object that has a lot of properties on it that we don't
+actually want.
+So there are so many properties on this because a lot of these are related to things that you might
+want to do with a Google auth object from Google's own API.
+In fact, the only things that we really need in our application is this display name, this email.
+And possibly, maybe a phone number, right, but the most important thing is this UUID
+represents the dynamically generated I.D. string that Google made for us when we authenticated this
+user using the Google sign it.
+
+In fact, if we go into our authentication and we look at our user inside of our off tab, whenever
+
+We have to take this userAuth object.
+Figure out the properties that we want from it and put it into our database.
+Particularly, what we want to do is put it into our users collection. in firestore
