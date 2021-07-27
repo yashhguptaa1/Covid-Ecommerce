@@ -1,0 +1,9 @@
+Wrap root component : App.js in our case
+with <BrowserRouter> from react-router-dom
+it provides all the functionalities of routing library to (App.js)
+
+Now, to use the switch component, we wrap our Route components within it.
+Now, what it does is the moment that a route inside of it finds a match in the path, it does not render
+anything else but that route.
+Switch gives us more control by ensuring only one component is rendered for a given two similar path
+

@@ -1,0 +1,84 @@
+What react router dom does for us is that any component that 
+gets rendered by our route,
+It gets passed three arguments as props which can be accessed,
+in the component that gets rendered .
+
+<Route exact path='/home/:Id' component={HomePage} />
+
+const HomePage = (props) => {
+  console.log(props);
+}
+
+1) history: {length: 3, action: "POP", location: {…}, createHref: ƒ, push: ƒ, …}
+2) location: {pathname: "/home/1", search: "", hash: "", state: undefined}
+3) match:
+  isExact: true
+  params:
+    Id: "1"
+  path: "/home/:Id"
+  url: "/home/1"
+
+{props.match.params.Id}
+
+Now, the other way to do this type of navigation is using the history prop.
+So if instead of a <Link>, we wanted to use a button and in the end click of our button, we would pass
+it a function. like
+
+<div
+    className={`${size} menu-item`}
+    onClick={() => props.history.push(`${props.match.url}/shop`)}
+  >
+
+That gets called when ever gets clicked, and in this function, we will call the history Prop, right.
+And we will tell it to push and then the string where we want to go.
+So this is equivalent to using a <Link>, but it gives us more dynamic access.
+We can dynamically functionally control when we want this to work.
+So if, for example, we wanted to do this in a component did mount instead.
+We couldn't render a <Link> in our component did mount because it's just a functional call.
+It's a method we would use history, dot push and we'll see that here.
+
+The third prop that we have is the location.
+The location prop actually tells us.
+Where we are currently like, what is our application, the main thing I want us to focus on is the
+location.pathname, ignore these other properties.
+If we were to navigate, let's say let's not make our home page exact again.
+Even though our homepage still matches our prop location.pathname, 
+gives us the full path name of where we are currently.
+So this is useful because our application, our components in some way can become aware of what the
+full URL looks like.
+but the main usage of match 
+Is that this allows our components to build out a nested root structure.
+
+So what do I mean by nested routes?
+
+Well, let's say, for example, 
+topic list page renders a bunch of links to a bunch of topic details.
+Well, we could have the link.
+And this link will go to.
+A dynamically generated route, let's say, we want to say.
+
+{prop.match.url}/13
+
+We want to go to let's say I want to go to 13, for example.
+And let's do this for a couple others.
+Seventeen, twenty one, these are all just random.
+Well, now it doesn't matter where our topics list is, it will always now be aware and know how.
+To take us to that, URL.
+
+Even if our topics list was at some obscure Long You URL.
+That it was not aware of.
+we can build dynamic rotuing without needing the entire URL
+
+So even though directory component and Menu item,
+are children of our homepage component, only our home page component gets access to the
+history prop that we need because it's the home page component that we're passing into <Route>.
+
+To avoid prop drilling
+we use withRouter : a higher order component provided by react-router-dom
+a higher order component is a function that takes a component as argument
+modifies it and returns you the modified component.
+
+export default withRouter(MenuItem);
+
+it will return MenuItem component with access to those location,match and 
+history props that we need access to.

@@ -1,0 +1,48 @@
+routing in a single page application
+
+There's some pros to it, right?
+One is that initially when we send the file from the server, we only send the files once an HTML file,
+a successful and a massive JavaScript file usually.
+Now, back in the day when we clicked on a link, we would go back to the server, ask for a new e-mail
+page and that server would send it back with CSS and JavaScript.
+This time around, things are a little bit different.
+We request the page and then all the navigation happens within here because we don't need to talk to
+the server anymore.
+The JavaScript file.
+Or our library allows us to manipulate the DOM so that now our servers can just focus on sending data
+instead of focusing on, hey, what view to render, what page dissent, we can just make API requests
+and get JSON data back, which is really, really nice.
+And now our server, maybe if we had a mobile app as well, can also be used as the same one because
+that Json data can be sent to a mobile phone.
+Because we're not going to be sending e-mail files back and forth.
+It also makes changing the dam or users interacting with your website faster because it doesn't have
+to go back and forth, back and forth to communicate.
+
+Well, this package we're going to use react router lets us do some interesting things.
+For example, if I click on a picture like hats, you see that my URL changed from an empty.
+Homepage, two shops hat.
+Initially, when single page applications started to take off because single page applications didn't
+really have this functionality, you had this backbutton problem where you couldn't go back because everything
+well, there weren't any links.
+This wouldn't happen and this would just keep staying empty.
+So when the browser said back, well, it wouldn't work.
+And this was a common problem because the navigation inside the application URL didn't change.
+But the problem is now solved because the browser provides something called a history API.
+And internally libraries like React Router and other single page application routing.
+Libraries use this API provided by the browser to essentially hijack and mimic this .
+
+And the problem it tries to solve is the fact that we now don't have that default browser navigation
+provided by the browser because the browsers are built around this idea of clicking on links and getting
+a new HTML5 and re access while know everything is going to be in jsx and we'll just change and update
+the page .
+
+a single page application, which means that it's
+not actually redirecting you and rebuilding the entire application every time the URL changes.
+We're really just hijacking the URL's position to determine with JavaScript what part of the DOM
+to take off and then what part of the DOM to replace write.
+What component do we want to remount or mount?
+We're not trying to re render the entire application, which was typically the case before we were building
+react applications because REACT is an SPEEA, a single page application.
+So because of this and a link would actually force you to redirect and re render the entire application,
+whereas using the react route or dom link, we're just borrowing the URL to, to tell our application
+what to re render.

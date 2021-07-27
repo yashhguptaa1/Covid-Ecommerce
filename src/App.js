@@ -49,10 +49,9 @@ class App extends Component {
     return (
       <div>
         <Header />
-        {/* Switch gives us more control by ensuring only one component is rendered for a given two similar path */}
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/shop' component={ShopPage} />
+          <Route exact path='/shop' component={ShopPage} />
           <Route exact path='/checkout' component={CheckoutPage}/>
           <Route
             exact
