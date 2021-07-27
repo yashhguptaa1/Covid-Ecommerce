@@ -1,0 +1,20 @@
+If this was our Login page and this was our 
+sign in component and this is our register component
+where should the state live?
+
+Ready for the answer?
+
+The easiest way to think about this is to lift up the state only up to the
+point that the components needed.
+So when we create this component.
+We're going to actually keep the state in its own individual component, so sign in is going to have
+its own state and register is going to have its own state.
+Why is that?
+Well, because these two things don't need to talk to each other, sign in, doesn't really care what
+we enter and register and register, doesn't care what's in the form of sign in.
+So if we lifted the state up and kept the state in the entire page every time we update this.
+And the state changes.
+Both of these would get we rendered.
+So that means two extra calculations that react has to do to render this and 
+we render sigin if we kept state just in the signin, 
+because that's the only place that we care about those changes,

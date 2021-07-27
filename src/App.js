@@ -48,6 +48,7 @@ class App extends Component {
 
     return (
       <div>
+        {/* We want Header component to show on each page even though url changes*/}
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
