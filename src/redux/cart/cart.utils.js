@@ -1,3 +1,7 @@
+
+//utility function to group same items in single groups by increasing
+//count of same item if item already exists in array
+//our array contains id of each item so each can be uniquely identified
 export const addItemToCart = (cartItems, cartItemToAdd) => {
     const existingCartItem = cartItems.find(
       cartItem => cartItem.id === cartItemToAdd.id
@@ -11,6 +15,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
       );
     }
   
+    //attaching quantity property to cartItem object
     return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
   };
 

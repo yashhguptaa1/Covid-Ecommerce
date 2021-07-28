@@ -1,0 +1,82 @@
+That our count goes up for every item that we add and we'll see that it matches, we have two, two
+and one, which gives us five total quantity of items.
+Now, what we've written just now is called a selecter, because what we're doing here is we are writing
+some kind of code that gets a state.
+As in the whole state object, and then pulls off just a small portion or a slice of that state, because
+what we're getting is we're getting the cart, then the cart items and then reducing over those cart
+items to get a new value.
+Were computing a new value based off of the state.
+
+Now, the caveat to this, even though this is how Redux suggests the code to be written, is that
+will notice that whenever any reduce or updates.
+When we remember looking at our reducer code, we're always returning a new object now whenever we
+return a new object and redux recompose and rebuilds the entire state object map states to props is
+actually getting called every single time, which is always passing in new props to our components.
+And why this is important is because this is always re rendering our components.
+
+Now, I can actually show you how this will happen, let's say, for example, we so log whenever map
+states of props gets called and I'll say I am being called.
+So even though our car icon component only cares about cart items.
+What ends up happening?
+Is whenever we change the state, so let's say, for example, we're not modifying our cart state,
+let alone our current state, we're modifying our current user on our user state.
+If I sign in right now, you'll see that I'm being called gets triggered because the map states are
+props inside of our car icon component is still being called.
+
+And then if I sign out right again, it's just use our current user getting changed and but again,
+
+our console log is still firing, which means that our map states are props, keeps firing.
+
+And this is important because our reduce is always returning a new value, because Reduced doesn't know
+
+that the car items coming in might be the exact same.
+
+So let's say we had two items in our cart and it reduces down to the value of two if these car items
+
+come in again.
+
+But it's the exact same two items reduced is still getting cold.
+
+So we're still always getting a new computed value.
+
+And you might be thinking, why would that happen if the objects are the same?
+
+Well, they're actually not because our state is always a new object, which means that everything,
+
+even if the value is identical.
+
+The object of our total state is a brand new object, which means everything inside of it, all of the
+
+data inside of it is brand new.
+
+And that's why every time Reduce gets called, whatever those items will be will also be brand new,
+
+even if the value is the same two car items.
+
+Now, this is not good for performance because we don't want to re render our component every time the
+
+state changes, especially if those state changes don't actually modify the parts of the state that
+
+are component cares about.
+
+So what we would want to do is to be able to store or cash the value of what our selecter is using to
+
+compute its value.
+
+So if the car item values don't actually change, right.
+
+And if the output of the selector doesn't change, we don't want to re render our component.
+
+Well, what this is actually called is memorisation, which is the cashing of the selectors value.
+
+And we can actually achieve this kind of memorisation using a library called Reselect and Reselect allows
+
+us to write the selectors in such a way so that it knows that if the properties that it's pulling from
+
+the state and using are the same in the sense that their value hasn't changed and the output of the
+
+selector is not different, then it won't actually pass them into our component.
+
+It'll just pass the old value and our react component will know not to render.
+
+There's also other benefits in the sense that it allows us to actually separate our selectors and make

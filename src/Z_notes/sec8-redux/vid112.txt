@@ -1,0 +1,47 @@
+We keep all state in store and store is one single massive object 
+and pass down the required state to whichever component as props
+
+So use redux when things get really, really complicated.
+The second point is useful for sharing data between container's.
+And this is another thing with when projects become large.
+When they need to start sharing state between containers with react, this is actually a little bit
+difficult and you have to move the state up one layer so that you have a parent that can share state
+between the two.
+And finally, Redux has predictable state management using the three principles now what are the three
+principles?
+The first one is the idea of single source of truth, and this is a fancy way of saying that we have
+one single big object that describes the entire state of the app.
+Remember this?
+We had one massive state object that describes everything within our app, so we have our single source
+of truth because react reacts based on whatever the state is.
+We can just have one big object that describes how the app should look and react will take care of it.
+The second principle is the idea that state is read only and this encourages something called impeachability,
+which is not modifying the object, and it prevents unexpected errors this way.
+So the state object that we will create with redux will actually never get modified and instead we would
+create a new state after each action is taken by the user.
+And then finally, the third principle is the idea that changes are made only using pure functions,
+something that we've talked about in my previous course, the idea that a pure function is something
+that receives an input and always returns an output that is predictable if we enter the same.
+
+The first one is action.
+And action is something that a user does, such as clicking on a button or a drop down menu.
+And what happens in Redux is as soon as a user clicks on something, a button and creates an action,
+it goes through something called a reducer.
+And a reducer is simply a function, a pure function that receives an input, which is the action.
+So the user just clicked on a button and creates an output.
+And this output is the state or the store, as we call it, in redux, which is the entire state of
+the app.
+So as it goes through the function, the store gets updated and react because it notices this state
+change, makes changes to the VLA.
+Again, these are ways that we're going to encounter as we start coding along.
+
+we'll get to now redux and I want to teach this just for historical purposes, uses an architectural
+pattern called flux pattern architecture and software is used as a way to make sure that we're able
+to solve problems in a logical sense and in an organized fashion.
+And this flux pattern, which inspired the library redux, has this idea of having an action and then
+having a dispatcher that dispatches this action to the store, which is our state, which updates the
+view.
+And it's one way dataflow.
+Everything flows one way.
+If the view gets updated, we go back to the action and again goes through dispatcher that dispatches
+the change to the store and then to The View.

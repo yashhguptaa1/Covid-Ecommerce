@@ -1,0 +1,79 @@
+So if we were to refresh the page
+Our reducer gets reset completely,
+which makes a lot of sense because our application is very instantiating
+and all of our initial states for all our reducers are being loaded.
+So it's like the app is in a brand new state.
+The only reason the user is being set is because our users authentication status is not being stored
+by the application.
+It's being handled by Firebase auth, if you remember when we did that lesson.
+So firebase auth gives us session persistence because it's aware of until when the user signs out,
+it's not going to actually end the session, whereas for everything else in our store, we don't have
+any kind of storage of anything related in order to persist.The state of the items
+that we're adding across our application, even on refresh or closing the window.
+
+We want to fix this because in most e-commerce websites, it persists, the users cart in some way,
+shape or form, if not, when the user closes and reopens the website, at least if the user refreshes
+in the same session, in the same tab.
+
+Now, there's multiple ways that we can tackle this problem.
+One way is using Firebase, where we would store our cart items and then they would belong to our user
+so that whenever the user signs in or whenever we're aware that a user Auth state has changed based on
+our app. We could also pull in our cart, which we would store in our database, but we're going to do that actually
+later on in the course in a more advanced firebase lesson.
+
+But right now, what if we just wanted to leverage what we had on the front end?
+What if we wanted to just store our cart items?
+Well, if you're familiar with local storage, it's actually possible.
+And the reason why it's possible is because our reducer state is pretty much just JSON objects, they're
+just large JSON objects, which is easy to store and easy to update, especially because our reducers
+are just functions that return objects, dates.
+You can imagine if in some way we could store the state of what the reducer isn't.
+And then when the app reloads, we just pull in whatever we stored and then populate the reducer as
+such.
+
+Now there's a really easy library called Redux Persist that allows us to do exactly that.
+And it wires in with Redux so that we don't actually have to worry that much about it.
+But before we explore that, I want to talk about local storage, because that's what the underlying
+tool is being used by redux persist.
+
+So let's actually explore local storage a little bit, and it's pretty easy to actually start using.
+So we actually have access to it on our window object, so on our window object, we have access to
+both local storage and session storage, which are both the almost exact same means of storing something
+on our browser.
+
+The only difference is that session storage persisted throughout the session.
+So as long as our tab is open, even if we refresh the page, we'll still have access to what we've
+stored in session storage.
+
+Whereas if we closed the page, then we would lose whatever it is that we stored in session storage,
+whereas local storage will persist until we clear it out, meaning that if we close our window close,
+our browser will always have access to it.
+
+But let's actually explore how to use it.
+Now, local storage has a get item and a set item, so one sets the item inside the storage so it stores
+it and then the get lets us pull it out of local storage and we store them under string keys.
+So we give it a key and that's what I will store it under.
+And then I'll also be the same key that we use to access it.
+But we have to store strings only.
+So let's say, for example, that we had a object we wanted to store my object to store.
+And it's just equal to some object with my name of equal on it.
+Now, in order for me to store it, I would say window to local storage, set item, right.
+And then I would give it the key.
+So let's say my item.
+Now, what I want to do in order to actually store it is I have to convert this JSON object to a string,
+and we can do that with the Json object that we get from our JavaScript.
+So we always have access to this.
+And this allows us to perform certain methods on our case, on objects such as this one called String
+which allows us to stringify our object.
+
+So really handy local storage is great for this, if I refresh, I'll see that I still have access to
+local storage.
+And now if I look, there's the string, we can just pass it again.
+And now I've managed to persist this object across my application state, it's persisted so because
+all restoring our JSON objects, wouldn't it be great if we could just store the state of our cart and
+then persist it and then whenever our application refreshes or opens up for the first time, we pull
+it out of local storage and then update our reducer to show what we had stored.
+Well, that's what the library redux persistance, but I wanted to show you what local storage was and
+such and storage technologies is almost identical to local storage, but again, it just doesn't store
+across closing the tab.
+

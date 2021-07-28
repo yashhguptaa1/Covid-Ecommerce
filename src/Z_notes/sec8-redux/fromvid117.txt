@@ -1,0 +1,47 @@
+connect is a higher order component that lets us 
+modify our component to have access to things related to redux.
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CartIcon);
+
+
+So what we'll do with connect is we are actually going to pass it two functions, the second one being
+optional, and then that'll give us back another higher order component that we pass.
+our current component , for example in above we pass CartIcon.
+Now, what is it that we pass as the first argument of connect, it's going to be the function that allows
+us to access the states : mapStateToProps
+with the state being our reducer, our rootReducer in root-reducer.js, to be specific, we
+know that with a rootReducer, it is an object that has a property of user that points to our userReducer
+
+this function takes in state : rootReducer
+and returns an object 
+property names matches the props names we pass to current component
+
+const mapStateToProps = state =>({
+  itemCount: state.cart.cartItems
+});
+const CartIcon = ({ toggleCartHidden, itemCount })
+
+The second argument will be our mapDispatchToProps, 
+
+const mapDispatchToProps = dispatch => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden())
+});
+
+const CartIcon = ({ toggleCartHidden, itemCount })
+
+which is a function that gets this dispatch
+property and then similarily will return an object where the prop name will be whatever prop we want
+to pass in that dispatches the new action that we're trying to pass, which is 
+
+export const toggleCartHidden = () => ({
+  type: CartActionTypes.TOGGLE_CART_HIDDEN
+});
+
+import { toggleCartHidden } from '../../redux/cart/cart.actions';
+in CartIcon.jsx
+
+dispatch(toggleCartHidden(payload))
+here dispatch takes in action object which it is going to pass to every reducer

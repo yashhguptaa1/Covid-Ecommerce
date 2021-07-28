@@ -1,0 +1,78 @@
+And let's look at our reducers, so reducers are a fundamental part of redux because they are essentially
+what our state is represented by.
+When I say reducer, you can pretty much picture it as an object and the root reducer is the big object
+that holds all the smaller objects.
+
+Well, we do that with these things called actions and what actions are 
+It's an object that has a type on it with a string value and then it has a payload that could be whatever
+we want it to be, whatever we want to update that value to.
+We would just pass that as the payload.
+So our components will fire these actions right with this with a name on it that take this shape with
+a type and a payload that would then go into our reducer, which would then check the type to see whether
+or not that Type of action is applicable to that reducer because if we want to update the current user, only the
+user reducer cares about that action.
+The home producer and the show's producer don't care about it.
+And the way that it works is that these reducers are going to check against the type, right, because
+that string we're just going to match and say, oh, does my producer care about this type of action?
+If it does, I want you to update the whatever property it is.
+In this case, it's the current user property with the payload on that action.
+So these actions update our user reducers with the payload and then our user reducer passes that current
+user in as a prop to the component.
+And then the component will render however it needs to with the prop and it will continue to always
+follow this flow.
+
+Lets say the user logs out right from our app component.
+We would then fire that action again.
+Set current user would be the action.
+So the type would be set.
+Current user payload would be null this time because the user logged out.
+So then our user reducer would update current user with null and then pass that null current user property
+into our component so that a computer component can render null as current user or do whatever it wants
+with it.
+At that point, our component cares about that property, but our redux does not.
+So if we want to look at our reduce or cut, the way that a reducer looks is every reducer is just
+a function.
+The function takes a state and then it takes an action.
+The state is the previous state that it was in.
+Is the state before this new action is going to update it so we can even see this as previous or current
+state.
+And what we would do.
+Is with this function, it's going to return an object, it's going to return an object, and that object
+is going to be the new state of art, use a reducer.
+It's going to be a new object.
+So what we do to determine that is we use what's called a switch statement.
+And a switch statement is kind of like a really big if statement.
+So we're checking the action type.
+Right, which is that string value we saw here.
+We're going to check the type if the case.
+Is that action type is set current user, if that's what that string of value of type is, then we're
+going to return a new object where we are going to just spreadin current state, but make sure that
+the current user property is the payload.
+And the reason we always return a new object is because we want our components to re render as we remember,
+if we pass in the same old object, except the property is different, our components might not re render
+the way we want them to because of the way that react.
+Components work.
+components only be render if they're props are different.
+And the only way that the props are different is if the object that it has is new.
+If we pass the same property, i.e. the same object, but with a different value, like, let's say
+we just passed in a modified version of current state where we instead did current state dot current
+user equals action payload.
+
+And the Provider is a component that we get from REACT Redux.
+This provider is a component that we want to wrap around the entire application because we want everything
+inside to have access to this store object that we get from Redux.
+So we'll actually write the store object.
+
+in index.js
+
+<Provider store={store}>
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+  </Provider>,
+
+every single reducer gets every action so in default of every reducer we just return the state
+
+combineReducer combines all the reducers into single big object
+
+utility functions allows us to keep our files clean and organize functions that we may need in multiple files in one location

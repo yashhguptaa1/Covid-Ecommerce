@@ -20,6 +20,7 @@ const persistConfig = {
   //the only reducer we want to persist is the cart
 };
 
+//combining all small objects into single object which is accessed by all components
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
@@ -27,5 +28,5 @@ const rootReducer = combineReducers({
   shop: shopReducer
 });
 
-//modified route reducer ,with persistance capabilities
+//modified root reducer ,with persistance capabilities
 export default persistReducer(persistConfig, rootReducer);

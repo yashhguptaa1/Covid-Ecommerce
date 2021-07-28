@@ -1,0 +1,29 @@
+This is how the concept of redux works.
+We have these components that compose our application and they get props.
+The components, then fire actions.
+And those actions could be anything, they could be triggered from user clicks right there, essentially
+as they sound their actions.
+These actions then update the state the way that we do set state right, we have actions that trigger
+a set state inside of our components.
+
+But instead of setting local, state, what if we set a single piece of state somewhere else, right.
+Where any component could access what that is, what redux is?
+Redux has that state not in the local component, but somewhere where any component can access it.
+And those pieces of state are called reducers.
+So, for example, any state regarding users like our current user that we're currently storing on our
+app would be in a user reducer, which is just a piece of the state or a slice of the state.
+Anything related to our shop items, for example, that we need to display would be in a shop reducer
+and then anything related to our home, if we had like, say, our directory items would be in a home
+reducer.
+And they all combine together into one big object, right.
+One big state object called the root reducer.
+And then from the root reducer, when the components need those pieces of state in order for them to
+populate and display their views, we would pass that state into those components.
+
+As properties, right, as the props that they need to display in order for our components to function
+the exact way that we've been writing them, and this way all of our state and all of that information
+is stored in one object, one place, and it still flows in one direction.
+And if it follows, if you remember our diagram of our unidirectional data flow, except this is now
+the state, this represent our views and these are the actions, we're still getting unidirectional
+data flow.
+And by doing this, we also avoid that issue of proper drilling.
