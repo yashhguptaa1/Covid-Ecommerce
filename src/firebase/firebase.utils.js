@@ -62,6 +62,7 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
+//the array that we would get back as snapshot we want to convert it into object
 export const convertCollectionsSnapshotToMap = collections => {
   const transformedCollection = collections.docs.map(doc => {
     const { title, items } = doc.data();
