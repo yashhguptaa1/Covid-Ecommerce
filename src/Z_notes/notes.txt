@@ -4,10 +4,6 @@ It remembers last user signed in even if we close tab or refresh pg
 As long as our application component is mounted on our job the connection to firebase is open
 SO firebase sends message ecerytime user State changes , we dont have to fetch everytime
 
-NoSQL is fancy way of saying that our DB consists of 
-one gigantic JSON object.
-UUID represents the dynamically generated I.D. string that Google made for us when we authenticated this
-user using googleSignIn
 
 Currently the problem we face is that as soon as we refresh our application
 Our reducer gets reset completely , as our application is reinstantiating, app is in brand new state
@@ -21,3 +17,14 @@ Redux-persist library allows to access session storage or local storage on front
 Session persistance means as long as our tab is open, even if we refresh the page we
 still have access to what we have stored in session storage
 local storage will persist until we clear it out ,meaning if we close our window
+
+NoSQL is fancy way of saying that our DB consists of 
+one gigantic JSON object.
+UUID represents the dynamically generated I.D. string that Google made for us when we authenticated this
+user using googleSignIn
+
+so in firestore we save data as key: object pair
+const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) 
