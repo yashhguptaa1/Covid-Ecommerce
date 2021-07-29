@@ -1,40 +1,39 @@
-
 //utility function to group same items in single groups by increasing
 //count of same item if item already exists in array
 //our array contains id of each item so each can be uniquely identified
 export const addItemToCart = (cartItems, cartItemToAdd) => {
-    const existingCartItem = cartItems.find(
-      cartItem => cartItem.id === cartItemToAdd.id
-    );
-  
-    if (existingCartItem) {
-      return cartItems.map(cartItem =>
-        cartItem.id === cartItemToAdd.id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      );
-    }
-  
-    //attaching quantity property to cartItem object
-    return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
-  };
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemToAdd.id
+  );
 
-  export const removeItemFromCart = (cartItems, cartItemToRemove) => {
-    const existingCartItem = cartItems.find(
-      cartItem => cartItem.id === cartItemToRemove.id
-    );
-  
-    if (existingCartItem.quantity === 1) {
-      return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id);
-    }
-  
-    return cartItems.map(cartItem =>
-      cartItem.id === cartItemToRemove.id
-        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+  if (existingCartItem) {
+    return cartItems.map((cartItem) =>
+      cartItem.id === cartItemToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
-  };
+  }
+
+  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+};
+
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemToRemove.id
+  );
+
+  if (existingCartItem.quantity === 1) {
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
+  }
+
+  return cartItems.map((cartItem) =>
+    cartItem.id === cartItemToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  );
+};
+
 //Although this file was commited before
-//This file helps in implementing counter for each item 
+//This file helps in implementing counter for each item
 //if adding same item twice
 //the counter will become 2
