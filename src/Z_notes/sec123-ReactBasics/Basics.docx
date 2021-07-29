@@ -1,0 +1,39 @@
+It's what the browser uses to display a Web Site or a web app, and Javascript is simply manipulating
+
+this Dom.
+
+That's all javascript is doing.
+
+This is what libraries did you either did this manually or you used jQuery or you use some sort of
+
+a library that allows you to use this in a simple fashion you see this way of programming was called
+
+imperative: that is in an imperative paradigm you directly change individual parts of your app in response
+
+to various user events. so you had let's say your javascript file you'd say: hey if user is logged in.
+
+So React says: hey you know what.
+
+Let me take care that I'll find the best way for me to change the Dom and just declare to me what your
+
+app looks like.
+
+So all we need to do is say hey this is a javascript object of how I want the app to look and React
+
+is going to hold this javascript object this massive massive blueprint of how things should look.
+
+And based on this blueprint that we give it React just says hey just tell me what the page should
+
+look like and I'll take care of it.
+
+I'll do everything for you.
+
+I'll find the best way to use the DOM.
+
+You're never going to touch the DOM.
+
+Just tell me what the page should look like.
+
+This declarative paradigm is called that because we declare that hey this is what the state or data
+
+of our app should be like.

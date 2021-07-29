@@ -1,0 +1,153 @@
+VID 271......................................................................................
+React memo is a way for us to memorize this component so that the component does not render if the props
+values do not change.
+Now, what do I mean by this?
+Well, just like with our should component update life-cycle method on our actual class components,
+react memo does the exact same thing as implementing a shallow comparison that should component update
+does for our class component and in a similar way.
+Using React memo on our functional components allows our new component to check the old props against
+the new props to see if the value has changed.
+
+Now, what this means is that in order for us to use it, we wrap our component with react memo like
+a higher order component, which will memorize the actual component, very similar to reselect when
+we memorize our selectors.
+The only difference is that it checks to make sure that the actual object values have not changed at
+the root level, which is a shallow comparison.
+
+//For functional components
+export default React.memo(HomePage);
+
+//For class based component
+extends from React.PureComponent
+shouldComponentUpdate(nextProps,nextState)
+{
+  console.log('shouldComponentUpdate',nextProps);
+  return nextProps.text !==this.props.text;
+}
+
+VID 274
+I mentioned that there's a chance that when you pass in a inline function to a component, that because
+in JavaScript functions are also objects, you are always instantiating a new function, meaning that
+it could get around your memorised component.
+Well, in this lesson, we are going to take a look at how we can actually memorize our functions so
+that we don't call them and render them unnecessarily if we do not have to.
+
+This function already is something that doesn't have any dependencies and it doesn't change.
+There's no properties coming in.
+Why do we need to re instantiate this function?
+Well, this is actually exactly what the useCallback hook is for the useCallback hook allows us to
+memorize a version of a function that we wrap in it.
+And use that same function if it already exists.
+
+const[count1,setCount1]=useState(0);
+
+const logName = useCallback(()=> console.log("yash"),[]);
+const increment=useCallback(()=> setCount1(count + 1),[count1])
+
+Now it takes two arguments.
+The first argument is the function we want to memorize.
+The second argument is an array of dependencies, just like our useEffect hook.
+The only difference is that this array is mandatory with the use callback.
+Now, because, of course, our function has zero dependencies, we can simply pass an empty array,
+but there will be instances where we do need to pass in a dependency.
+
+In rerender it will use memorized version of function.Thus reference remains same for the function
+
+VID 275......................................................................
+The only thing about useMemo(), is that you actually use it when you want to cache
+the value of a function that does something complex.
+
+Now, what we want to do is actually not recompute this value every time we render the component.
+This takes a step beyond just memorizing the function.
+We actually want to memorize the output of the function because performing the function itself is also
+computationally expensive.
+So what we do with useMemo is we actually are able to get the return value of this function.
+And then cache that value and use it instead of invoking the functions 
+
+const doSomethingComplicated= useMemo(()=>{
+ return a*a*a;   
+},[a]);
+
+
+But what is Gzipping?
+Its actually a compression strategy that the back end servers do, so that when they pass it through
+https to from the server to our client, it's in a smaller package where it gets unzipped in the actual
+client browser.
+At that point it will be the full size that the actual project is of each of these bundles.
+But you'll see that these are the sizes that we should be expecting to 20 kilobytes some point to for
+some point to one, and then really small sizes afterwards.
+
+So all we have to do here is we simply yarn add compression.
+The compression library is a library that allows us to compress and zip all of the files 
+and chunks that we end up sending out from our server.
+
+
+In this lesson, we are going to take a quick look at the new performance tool that react released in
+
+sixteen point ten, The Profiler API.
+
+So this profile API is just a quick little component that allows us to check how much time it takes
+
+our components to render or mount.
+
+It's very similar to the dev tools profiler that we've used extensively already in this section of the
+
+So to do so, we just simply import in the profiler from react.
+
+And it is a new component that we can use to use it.
+
+We just want to wrap it around whichever component we're looking to test.
+
+So in my case, I want to test the directory component.
+
+So by doing this, I am now wrapping around the directory and the profile will give me information about
+
+the time it takes to render this section of our Daltry.
+
+Now, the profile component is going to take two properties.
+
+The first is an I.D., which is a string, and this is just an identifier that we can use to distinguish
+
+which profiler is logging, which data, because you can actually have multiple profiles all around
+
+your application.
+
+You can access them within each other.
+
+You've just given an ID so that when you log out this information, you know which profiler is logging,
+
+which information.
+
+So here I'm going to say that this is our directory.
+
+And then the second property you're going to pass, it is an on render call.
+
+Now, this is going to be a function and this function is going to receive numerous arguments.
+
+Not all of them are important, but the first three are important.
+
+One key thing to remember here is that this is not an object, so you cannot destructo them.
+
+You must either remember the order in which it's important or at the very least, check the documentation.
+
+Now, I'm only going to use the first line because I think they are the most important.
+
+But I will link you the documentation to this profiler so you can see what else you have access to.
+
+In this case, the first three are I.D. phase and the actual duration.
+
+So.
+
+What we're going to do is we're going to console an object that has these three things that we're getting
+
+in our function.
+
+Now, the idea, of course, is the string identifier that we passed in the phase is going to be either
+
+the mounts phase or a referendum phase, and then the actual duration is going to be the duration time
+
+it took to in milliseconds to actually render out our component.
+
+Now, the phase, as we know with our life cycles, our component is either mounting or it's updating.
+
+So those are the only two phases you're going to see.
